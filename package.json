@@ -4,7 +4,8 @@
   "description": "Node.js sample app for OpenShift 3",
   "main": "server.js",
   "dependencies": {
-      "express": "*"
+      "express": "*",
+      "jade": "*"
   },
   "devDependencies": {
     "nodemon": "*"
