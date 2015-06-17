@@ -2,15 +2,15 @@
   "kind": "Template",
   "apiVersion": "v1",
   "metadata": {
-    "name": "nodejs-example",
+    "name": "nodejs-mongodb-example",
     "annotations": {
-      "description": "An example Node.js application with no database",
-      "tags": "instant-app,nodejs",
+      "description": "An example Node.js application with a MongoDB database",
+      "tags": "instant-app,nodejs,mongodb",
       "iconClass": "icon-nodejs"
     }
   },
   "labels": {
-    "template": "nodejs-example"
+    "template": "nodejs-mongodb-example"
   },
   "objects": [
     {
