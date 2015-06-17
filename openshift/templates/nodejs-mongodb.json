@@ -157,6 +157,24 @@
                   {
                     "containerPort": 8080
                   }
+                ],
+                "env": [
+                  {
+                    "name": "MONGODB_USER",
+                    "value": "${MONGODB_USER}"
+                  },
+                  {
+                    "name": "MONGODB_PASSWORD",
+                    "value": "${MONGODB_PASSWORD}"
+                  },
+                  {
+                    "name": "MONGODB_DATABASE",
+                    "value": "${MONGODB_DATABASE}"
+                  },
+                  {
+                    "name": "MONGODB_ADMIN_PASSWORD",
+                    "value": "${MONGODB_ADMIN_PASSWORD}"
+                  }
                 ]
               }
             ]
