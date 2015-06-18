@@ -6,10 +6,16 @@ var port = process.env.PORT || process.env.port || process.env.OPENSHIFT_NODEJS_
 var ip = process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
 var nodeEnv = process.env.NODE_ENV || 'unknown';
 // TODO: Handle missing database service name
-var mongoIp = process.env.DATABASE_SERVICE_NAME;
+var mongoIp = process.env.MONGODB_SERVICE_HOST;
+var mongoPort = process.env.MONGODB_SERVICE_PORT;
 
 var express = require('express');
 var mongo = require('mongodb').MongoClient;
+if (process.env.MONGODB_SERVICE_HOST && process.env.MONGODB_SERVICE_PORT) {
+	mongo.connect('mongodb://' + process.env.MONGODB_SERVICE_HOST + ':' + process.env.MONGODB_SERVICE_PORT + '/' + process.env.MONGODB_DATABASE, function (err, db) {
+		console.log("Err is " + err);
+	});
+}
 
 var app = express();
 app.use(function(req, res, next) {
@@ -25,7 +31,7 @@ app.use(function(req, res, next) {
 		res.writeHead(200, {'Content-Type': 'text/plain'});
 
 		res.write('Hello OpenShift World! This is a Node.js-based sample application.\n');
-		res.write('Mongo IP: ' + mongoIp + '\n');
+		res.write('Mongo URL: mongodb://' + process.env.MONGODB_SERVICE_HOST + ':' + process.env.MONGODB_SERVICE_PORT + '/' + process.env.MONGODB_DATABASE + '\n');
 		res.write('Host: ' + req.headers.host + '\n');
 		res.write('\n');
 		res.write('node.js Production Mode: ' + (nodeEnv == 'production' ? 'yes' : 'no') + '\n');
