@@ -1,4 +1,3 @@
-#!/bin/env node
 //  OpenShift sample Node application
 var express = require('express');
 var fs      = require('fs');
@@ -10,6 +9,13 @@ app.engine('html', require('ejs').renderFile);
 var port = process.env.PORT || process.env.port || process.env.OPENSHIFT_NODEJS_PORT || 8080;
 var ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
 var mongoURL = process.env.OPENSHIFT_MONGODB_DB_URL || process.env.MONGO_URL;
+if (mongoURL == null) {
+	var mongoPort = process.env.MONGODB_SERVICE_PORT || 27017;
+	var mongoDb = process.env.MONGODB_DATABASE || "pageviews";
+	if (process.env.MONGODB_SERVICE_HOST) {
+      mongoURL = 'mongodb://' + process.env.MONGODB_SERVICE_HOST + ':' + mongoPort + '/' + mongoDb;
+	}
+}
 var db = null;
 
 var initDb = function(callback) {
