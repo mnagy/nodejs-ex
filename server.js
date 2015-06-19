@@ -56,7 +56,7 @@ app.get('/', function (req, res) {
 		res.render('index.html', { pageCountMessage : count, dbInfo: dbDetails });
 	  });
   } else { 
-    res.render('index.html', { });
+    res.render('index.html', { pageCountMessage : null });
   }
 });
 
