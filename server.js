@@ -52,8 +52,7 @@ app.get('/', function (req, res) {
 	  // Create a document with request IP and current time of request
 	  col.insert({ip: req.ip, date: Date.now()});
 	  col.count(function(err, count){
-        // console.log("Page count: " + count);
-		res.render('index.html', { pageCountMessage : count, dbInfo: dbDetails });
+ 		res.render('index.html', { pageCountMessage : count, dbInfo: dbDetails });
 	  });
   } else { 
     res.render('index.html', { pageCountMessage : "No DB configured"});
@@ -63,7 +62,6 @@ app.get('/', function (req, res) {
 app.get('/pagecount', function (req, res) {
   if (db) {
 	  db.collection('counts').count(function(err, count ){
-        // console.log("Page count: " + count);
 		res.send('{ pageCount: ' + count +'}');
 	  });
   } else { 
