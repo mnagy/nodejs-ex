@@ -59,7 +59,7 @@ app.get('/', function (req, res) {
       res.render('index.html', { pageCountMessage : count, dbInfo: dbDetails });
     });
   } else {
-    res.render('index.html', { pageCountMessage : "No DB configured"});
+    res.render('index.html', { pageCountMessage : null});
   }
 });
 
@@ -76,7 +76,7 @@ app.get('/pagecount', function (req, res) {
 // error handling
 app.use(function(err, req, res, next){
   console.error(err.stack);
-  res.status(500).body('Something bad happened!');
+  res.status(500).send('Something bad happened!');
 });
 
 initDb(function(err){
